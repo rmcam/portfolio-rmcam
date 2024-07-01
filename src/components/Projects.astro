@@ -1,0 +1,65 @@
+---
+import LinkButton from "./LinkButton.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import NextJS from "./icons/Nextjs.astro";
+import Tailwind from "./icons/Tailwind.astro";
+const TAGS = {
+  NEXT: {
+    name: "Next",
+    class: "text-white bg-black",
+    icon: NextJS,
+  },
+  TAILWIND: {
+    name: "Tailwind",
+    class: "text-white bg-black",
+    icon: Tailwind,
+  },
+};
+const PROJECTS = [
+  {
+    title: "Project 1",
+    description:
+      "Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.",
+    link: "#",
+    github: "https://github.com/rmcam/LG409-MercaSeguro",
+    image: "/projects/mercaseguro.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+];
+---
+
+<section class="flex flex.col gap-y-8">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+      <article>
+        <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+        <p class="text-lg mb-4 text-pretty">{description}</p>
+        <ul class="flex gap-x-2 flex-row mb-4">
+          {tags.map((tag) => (
+            <li>
+              <span
+                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+              >
+                <tag.icon class="size-5" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <img
+          class="rounded shadow-2xl shadow-white/10"
+          src={image}
+          alt=""
+        />
+        <footer class="flex gap-x-4 justify-start mt-4">
+          {github && (
+            <LinkButton href={github}>
+              <GitHubIcon class="size-5 mr-1" />
+              Código fuente
+            </LinkButton>
+          )}
+        </footer>
+      </article>
+    ))
+  }
+</section>

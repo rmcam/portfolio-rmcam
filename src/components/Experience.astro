@@ -1,0 +1,47 @@
+---
+import ExpirienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+    {
+        date: "Actualmente",
+        title: "Backend - Software Étnico",
+        description:
+            "Creación de aplicaciones web de alta calidad. Creación de APIs. Desarrollo de interfaces de usuario.",
+        link: "#",
+    },
+    {
+        date: "Jun 2023 - Jun 2024",
+        title: "Frontend - Frelance",
+        description:
+            "Presentación de clases de prueba. Atención al cliente. Guía en ejercicios de programación. Calificación de clientes potenciales y programación de citas. Construcción de relaciones interpersonales. Promoción de cursos de programación.",
+        link: "#",
+    },
+    
+    {
+        date: "Feb 2023 - May 2023",
+        title: "Trial Class Manager - Kodland",
+        description:
+            "Presentación de clases de prueba. Atención al cliente. Guía en ejercicios de programación. Calificación de clientes potenciales y programación de citas. Construcción de relaciones interpersonales. Promoción de cursos de programación.",
+        link: "#",
+    },
+    {
+        date: "Nov 2021 - Jun 2022",
+        title: "Technical Support - UT DISPROEL",
+        description:
+            "Implementación, administración y soporte tecnico para procesos electorales. "+
+            "Logística y gestión de equipos tecnológicos. "+
+            "Soporte técnico de primer nivel. Elaboración de informes y documentación.",
+        link: "#",
+    },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3 mt-2">
+    {
+        EXPERIENCE.map((experience) => (
+            <li class="mb-10 ms-4">
+                <ExpirienceItem {...experience} />
+            </li>
+        ))
+    }
+</ol>
