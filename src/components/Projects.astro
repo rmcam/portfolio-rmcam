@@ -1,65 +1,104 @@
 ---
 import LinkButton from "./LinkButton.astro";
-import GitHubIcon from "./icons/GitHub.astro";
+import GitHub from "./icons/GitHub.astro";
+import Link from "./icons/LinkInline.astro";
 import NextJS from "./icons/Nextjs.astro";
 import Tailwind from "./icons/Tailwind.astro";
+
 const TAGS = {
   NEXT: {
-    name: "Next",
-    class: "text-white bg-black",
+    name: "Next.js",
+    class: "bg-black text-white",
     icon: NextJS,
   },
   TAILWIND: {
-    name: "Tailwind",
-    class: "text-white bg-black",
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+  PHP: {
+    name: "PHP",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-[#003159] text-white",
     icon: Tailwind,
   },
 };
 const PROJECTS = [
   {
-    title: "Project 1",
+    title: "MERCASEGURO - Retos de programación con JavaScript y TypeScript",
     description:
-      "Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.",
-    link: "#",
-    github: "https://github.com/rmcam/LG409-MercaSeguro",
+      "E-commerce con dashboard, paginación e indexación para análisis detallados y gestión eficiente de inventarios en tiempo real. Sistema integral de creación de usuarios para garantizar seguridad y acceso personalizado. Páginas de marketing optimizadas para aumentar la visibilidad y las conversiones.",
+    link: "https://adventjs.dev",
+    image: "/projects/mercaseguro.webp",
+    tags: [TAGS.PHP, TAGS.BOOTSTRAP],
+  },
+  {
+    title: "SVGL - A beautiful library with SVG logos",
+    description:
+      "E-commerce con dashboard, paginación e indexación para análisis detallados y gestión eficiente de inventarios en tiempo real. Sistema integral de creación de usuarios para garantizar seguridad y acceso personalizado. Páginas de marketing optimizadas para aumentar la visibilidad y las conversiones.",
+    link: "https://svgl.vercel.app/",
+    github: "https://github.com/pheralb/svgl",
     image: "/projects/mercaseguro.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
 ];
 ---
 
-<section class="flex flex.col gap-y-8">
+<div class="flex flex-col gap-y-16">
   {
     PROJECTS.map(({ image, title, description, tags, link, github }) => (
-      <article>
-        <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
-        <p class="text-lg mb-4 text-pretty">{description}</p>
-        <ul class="flex gap-x-2 flex-row mb-4">
-          {tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
-                <tag.icon class="size-5" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <img
-          class="rounded shadow-2xl shadow-white/10"
-          src={image}
-          alt=""
-        />
-        <footer class="flex gap-x-4 justify-start mt-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHubIcon class="size-5 mr-1" />
-              Código fuente
-            </LinkButton>
-          )}
-        </footer>
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt="Recién llegado vs 5 años en Nueva Zelanda"
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 md:max-w-lg ">
+          <h3 class="text-2xl font-bold text-white dark:text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2 ">
+            <ul class="flex flex-row mb-2 gap-x-2">
+              {tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-2 text-white dark:text-gray-400">{description}</div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
       </article>
     ))
   }
-</section>
+</div>
